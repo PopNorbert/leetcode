@@ -1,0 +1,22 @@
+
+def lcp(a,b):
+    r = ""
+    i=0
+    if a=="" or b=="":
+        return ""
+    while a[i] == b[i]:
+        r += a[i]
+        i += 1
+        if i==min(len(a),len(b)):
+            break
+    return r 
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if len(strs) == 1:
+            return strs[0]
+        lc = lcp(strs[0],strs[1])
+        strs.pop(0)
+        strs.pop(0)
+        for word in strs:
+            lc = lcp(lc,word)
+        return lc
