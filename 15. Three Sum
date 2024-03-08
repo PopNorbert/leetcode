@@ -1,0 +1,28 @@
+class Solution:
+    
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        freq = {}
+        res=[]
+        for num in nums:
+            if num not in freq:
+                freq[num]=1
+            elif freq[num]>2 or num==0 and freq[num]>3:
+                nums.remove(num)
+            else:
+                freq[num]+=1
+        nums.sort()
+        n = len(nums)
+        for i in range(n-2):
+            j,k = i+1,n-1
+            while j<k:
+                sum = nums[i]+nums[j]+nums[k]
+                if sum==0:
+                    a = [nums[i],nums[j],nums[k]]
+                    res.append(a)
+                    j+=1
+                elif sum>0:
+                    k-=1
+                else:
+                    j+=1
+        return list(map(list, set(map(tuple, res))))
+
