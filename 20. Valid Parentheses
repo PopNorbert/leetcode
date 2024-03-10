@@ -1,0 +1,14 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        opp = {'(':')','[':']','{':'}'}
+        stack = []
+        for char in s:
+            if char in opp.keys():
+                stack.append(char)
+            elif not stack:
+                return False
+            else:
+                par = stack.pop()
+                if char is not opp[par]:
+                    return False
+        return len(stack)==0
