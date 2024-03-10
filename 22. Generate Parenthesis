@@ -1,0 +1,20 @@
+class Solution:
+
+    def back(self, n, res, balance, c):
+        if n == 0:
+            if balance!=0:
+                return
+            res.append(c)
+        else:
+            if balance<0:
+                return
+            n=n-1
+            self.back(n, res, balance+1, c+'(')
+            self.back(n, res, balance-1, c+')')
+
+    def generateParenthesis(self, n: int) -> List[str]:
+         res = []
+         balance=0
+         c = ""
+         self.back(2*n, res,balance, c)
+         return res
