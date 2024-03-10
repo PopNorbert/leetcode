@@ -1,0 +1,20 @@
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        n = len(nums)
+        res = []
+        for i in range(n-3):
+            for j in range(i+1,n-2):
+                k,l = j+1,n-1
+                while k<l:
+                    sum = nums[i]+nums[j]+nums[k]+nums[l]
+                    if sum==target:
+                        a = [nums[i],nums[j],nums[k],nums[l]]
+                        if a not in res:
+                            res.append(a)
+                        k+=1
+                    elif sum<target:
+                        k+=1
+                    else:
+                        l-=1
+        return res
